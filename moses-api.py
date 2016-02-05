@@ -5,13 +5,13 @@ app = FlaskAPI(__name__)
 
 def translate(text):
     """
-    TODO: Call Moses obj
+    TO-DO: Call Moses obj
     """
     return {
         'url': request.host_url.rstrip('/'),
-        'text': ('example \'%s\' translation' % (text))
-        'wc':(len(text))
-        'lan': 'Lorem Ipsum'
+        'text': ('example \'%s\' translation' % (text)),
+        'size': len(text),
+        'lan': 'Lorem Ipsum',
         'gender': 'Lorem Ipsum'
     }
 
