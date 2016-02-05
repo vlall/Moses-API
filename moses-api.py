@@ -4,6 +4,9 @@ from flask.ext.api import FlaskAPI, status, exceptions
 app = FlaskAPI(__name__)
 
 def translate(text):
+    """
+    TODO: Call Moses obj
+    """
     return {
         'url': request.host_url.rstrip('/'),
         'text': ('example \'%s\' translation' % (text))
@@ -14,17 +17,17 @@ def translate(text):
 
 
 @app.route("/", methods=['GET'])
-def notes_list():
+def instructions():
     """
-    List or create notes.
+    Moses Instructions
     """
     return 'The Moses API is working! Try a GET request with text.'
 
 
 @app.route("/<text>", methods=['GET'])
-def notes_detail(text):
+def user_get(text):
     """
-    Retrieve, update or delete note instances.
+    Translate text
     """
     text = translate(text)
     return text
