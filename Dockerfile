@@ -74,7 +74,7 @@ WORKDIR /home/moses/Downloads
 RUN wget https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz
 RUN tar xf boost_1_60_0.tar.gz
 RUN rm boost_1_60_0.tar.gz
-RUN cd boost_1_60_0/
+WORKDIR boost_1_60_0/
 RUN ./bootstrap.sh
 RUN /b2 -j4 --prefix=$PWD --libdir=$PWD/lib64 --layout=system link=static install || echo FAILURE
 
