@@ -11,8 +11,8 @@ def translate(text):
     """
     with open('../config.yaml', 'r') as f:
         config = yaml.load(f)
-    fileIn = doc["arabic"]["in.file"]
-    fileOut = doc["arabic"]["out.file"]
+    fileIn = doc["translator"]["in.file"]
+    fileOut = doc["translator"]["out.file"]
     status = 'Files Read'
     try:
         subprocess.call("rm %s && rm %s" % (fileIn, fileOut))

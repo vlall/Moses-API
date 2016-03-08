@@ -1,0 +1,3 @@
+translator:
+    infile: "path/to/run/in.file"
+    outfile: "path/to/run/out.file"
