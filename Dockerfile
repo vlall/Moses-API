@@ -33,7 +33,6 @@ RUN wget -O /home/moses/RELEASE-3.0.zip https://github.com/moses-smt/mosesdecode
 RUN unzip /home/moses/RELEASE-3.0.zip
 RUN rm RELEASE-3.0.zip
 RUN mv mosesdecoder-RELEASE-3.0 mosesdecoder
-RUN mkdir moses-smt
 RUN mkdir moses-models
 
 #  Giza
