@@ -16,16 +16,10 @@ def translate(text):
     homeDir = doc['sample-models']['homeDir']
     runCommand = doc['sample-models']['command']
     status = 'Files successfully read'
-    try:
-        subprocess.call(['rm %s && rm %s'] % (fileIn, fileOut))
-    except:
-        pass
-    try:
-        translateMe = open(fileIn, w)
-        translateMe.write(text)
-        translateMe.close()
-    except Exception:
-        print('Error creating input file')
+    subprocess.call(['rm %s && rm %s' % (fileIn, fileOut)], shell=True)
+    translateMe = open(fileIn, 'w')
+    translateMe.write(str(text)+'\n')
+    translateMe.close()
     subprocess.call([runCommand], cwd=homeDir,shell=True)
     readTranslate = open(fileOut, 'r')
     translatedText = readTranslate.read()
