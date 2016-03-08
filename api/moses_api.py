@@ -29,7 +29,7 @@ def translate(text):
             'url': request.host_url.rstrip('/'),
             'input_text': text,
             'input size': len(text),
-            'translation': translatedText,
+            'translation': translatedText.rstrip(),
             'lan': 'N/A',
             'gender': 'N/A'
     }

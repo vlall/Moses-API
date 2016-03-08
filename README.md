@@ -28,7 +28,7 @@ Build an API server running your own machine translation model
         "input_text": "haus",
         "lan": "N/A",
         "status": "Files successfully read",
-        "translation": "house \n",
+        "translation": "house",
         "url": "http://localhost:5000"
     }
 
