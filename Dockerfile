@@ -72,6 +72,8 @@ ENV IRSTLM /home/moses/irstlm
 RUN mkdir /home/moses/Downloads
 WORKDIR /home/moses/Downloads
 RUN wget https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz
+RUN tar xf boost_1_60_0.tar.gz
+RUN rm boost_1_60_0.tar.gz
 RUN cd boost_1_60_0/
 RUN ./bootstrap.sh
 RUN /b2 -j4 --prefix=$PWD --libdir=$PWD/lib64 --layout=system link=static install || echo FAILURE
@@ -80,6 +82,7 @@ RUN /b2 -j4 --prefix=$PWD --libdir=$PWD/lib64 --layout=system link=static instal
 WORKDIR /home/moses/Downloads
 RUN wget http://search.cpan.org/CPAN/authors/id/G/GR/GRAFF/Encode-Buckwalter-1.1.tar.gz
 RUN tar xf Encode-Buckwalter-1.1.tar.gz
+RUN rm Encode-Buckwalter-1.1.tar.gz
 WORKDIR /home/moses/Downloads/Encode-Buckwalter-1.1
 RUN perl Makefile.PL
 RUN make
