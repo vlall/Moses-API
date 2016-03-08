@@ -91,5 +91,5 @@ WORKDIR /home/moses/Downloads
 RUN git clone https://github.com/vlall/moses-api
 
 WORKDIR /home/moses/mosesdecoder
-#  UNCOMMENT TO COMPILE MOSES (Takes awhile...)
-#  RUN ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
+# COMPILE MOSES (Takes awhile...)
+RUN ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
