@@ -9,24 +9,27 @@ def translate(text):
     """
     Run translation model from Docker
     """
-    with open('../config.yaml', 'r') as f:
-        config = yaml.load(f)
-    fileIn = doc["translator"]["in.file"]
-    fileOut = doc["translator"]["out.file"]
-    status = 'Files Read'
+    with open('sample-config.yaml', 'r') as f:
+        doc = yaml.load(f)
+    fileIn = doc['sample-models']['infile']
+    fileOut = doc['sample-models']['outfile']
+    homeDir = doc['sample-models']['homeDir']
+    runCommand = doc['sample-models']['command']
+    status = 'Files successfully read'
     try:
-        subprocess.call("rm %s && rm %s" % (fileIn, fileOut))
+        subprocess.call(['rm %s && rm %s'] % (fileIn, fileOut))
     except:
         pass
     try:
         translateMe = open(fileIn, w)
         translateMe.write(text)
-    translateMe.close()
+        translateMe.close()
     except Exception:
-        raise('Error creating input file')
-    subprocess.call("bin/pipeline-recase.sh < in.file > out.file")
-    translatedText = open(fileOut, r)
-    fileOut.close()
+        print('Error creating input file')
+    subprocess.call([runCommand], cwd=homeDir,shell=True)
+    readTranslate = open(fileOut, 'r')
+    translatedText = readTranslate.read()
+    readTranslate.close()
     return {
             'status': status,
             'url': request.host_url.rstrip('/'),

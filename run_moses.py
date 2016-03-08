@@ -5,7 +5,7 @@ def main():
             host='0.0.0.0',
             port=5000,
             threaded=True,
-            debugging=True
+            debug=True
     )
 
 

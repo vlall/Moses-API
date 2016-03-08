@@ -6,6 +6,7 @@ EXPOSE 5000
 RUN apt-get update && apt-get install -y \
    automake \
    build-essential \
+   curl \
    g++ \
    git \
    graphviz \
@@ -18,6 +19,7 @@ RUN apt-get update && apt-get install -y \
    make \
    python-dev \
    python-pip \
+   python-yaml \
    subversion \
    unzip \
    wget \
