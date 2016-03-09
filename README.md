@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/vlall/Moses-API.svg?branch=master)](https://travis-ci.org/vlall/Moses-API)
 # Moses-API
 Build an API server running your own machine translation model
 
