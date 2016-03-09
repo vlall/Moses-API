@@ -48,3 +48,12 @@ def user_get(text):
     """
     text = translate(text)
     return text
+
+@app.route("/upload", methods=['POST','PUT'])
+def hello():
+    file = request.files['Test']
+    if file and allowed_file(file.filename):
+        filename=secure_filename(file.filename)
+        print filename
+
+    return "Success"
