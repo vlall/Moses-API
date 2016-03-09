@@ -43,7 +43,14 @@ Build an API server running your own machine translation model
 - To translate a whole file, run
 
     ```
-    $ curl -X PUT -F name=@translate_me.txt localhost:5000/upload | python -m json.tool
+    $ curl -XPUT -F name=@translate_me.txt localhost:5000/upload | python -m json.tool
+    {
+        "gender": "N/A",
+        "input size": 22,
+        "input_text": "das ist ein klein haus",
+        "lan": "N/A",
+        "status": "Files successfully read",
+        "translation": "this is a small house",
+        "url": "http://localhost:5000"
+    }
     ```
-
-
