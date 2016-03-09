@@ -25,7 +25,7 @@ Build a RESTful API server running your own machine translation model
 
     ```$ python run_moses.py &```
 
-- For a quick translatation of a word, run:
+- For a quick translation, run:
 
     ```
     $ curl -XGET localhost:5000/haus | python -m json.tool
