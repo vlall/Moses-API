@@ -11,6 +11,4 @@ install:
 
 script:
     - docker run vlall/moses-api /bin/sh -c "sudo apt-get -y install screen && cd /home/moses/Downloads/moses-api && screen -dm python run_moses.py"
-
-after_install:
     - curl -XGET localhost:5000/haus | python -m json.tool
