@@ -8,4 +8,6 @@ before_install:
 
 install:
     - docker run -d -p 5000:5000 vlall/moses-api /bin/sh -c "cd /home/moses/mosesdecoder; ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12 && sudo apt-get -y install screen && cd /home/moses/Downloads/moses-api && screen -dm python run_moses.py"
+
+after_install:
     - curl -XGET localhost:5000/haus | python -m json.tool
