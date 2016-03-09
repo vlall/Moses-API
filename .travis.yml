@@ -4,13 +4,14 @@ services:
     docker
 
 before_install:
+    - apt-get -y install curl
     - docker pull vlall/moses-api
 
 install:
     - docker run vlall/moses-api /bin/sh -c "cd /home/moses/mosesdecoder; ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12"
 
 script:
-    - docker run vlall/moses-api /bin/sh -c "cd /home/moses/Downloads/moses-api; python run_moses.py"
+    - docker run vlall/moses-api /bin/sh -c "sudo apt-get -y install screen; cd /home/moses/Downloads/moses-api; screen -dm python run_moses.py"
 
 after_install:
     - docker run vlall/moses-api /bin/sh -c "curl -XGET localhost:5000/haus | python -m json.tool"
