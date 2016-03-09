@@ -25,7 +25,7 @@ Build a RESTful API server running your own machine translation model
 
     ```$ python run_moses.py &```
 
-- For a quick translatation of a word, try:
+- For a quick translatation of a word, run:
 
     ```
     $ curl -XGET localhost:5000/haus | python -m json.tool
@@ -40,7 +40,7 @@ Build a RESTful API server running your own machine translation model
     }
     ```
 
-- To translate a whole file, run
+- To translate a whole file, navigate to your /moses-api folder, then run:
 
     ```
     $ curl -XPUT -F name=@translate_me.txt localhost:5000/upload | python -m json.tool
@@ -54,3 +54,5 @@ Build a RESTful API server running your own machine translation model
         "url": "http://localhost:5000"
     }
     ```
+
+- Since this the Moses sample-model, it is very limited. Visit the Moses SMT website for more information on creating your own models: http://www.statmt.org/moses/?n=Development.GetStarted
