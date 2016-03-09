@@ -95,6 +95,12 @@ RUN make install
 WORKDIR /home/moses/Downloads
 RUN git clone https://github.com/vlall/moses-api
 
+#  Download sample model
+WORKDIR /home/moses/moses-models
+RUN wget http://www.statmt.org/moses/download/sample-models.tgz
+RUN tar xf sample-models.tgz 
+RUN rm sample-models.tgz
+
 WORKDIR /home/moses/mosesdecoder
 # COMPILE MOSES (Takes awhile...)
-RUN ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
+# RUN ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
