@@ -18,8 +18,8 @@ def translate(text):
     """
     with open('sample-config.yaml', 'r') as f:
         doc = yaml.load(f)
-    fileIn = doc['sample-models']['infile']
-    fileOut = doc['sample-models']['outfile']
+    fileIn = doc['sample-models']['in']
+    fileOut = doc['sample-models']['out']
     homeDir = doc['sample-models']['homeDir']
     runCommand = doc['sample-models']['command']
     status = 'Files successfully read'
