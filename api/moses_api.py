@@ -4,8 +4,10 @@ import subprocess
 import yaml
 from werkzeug import secure_filename
 
+
 app = FlaskAPI(__name__)
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf'])
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -41,12 +43,11 @@ def translate(text):
             'gender': 'N/A'
     }
 
+
 @app.route("/", methods=['GET'])
 def instructions():
-    """
-    User Instructions
-    """
-    return 'The Moses API is working! Try a GET request with text.'
+    return 'The Moses API is working! Try a GET request with text.\n'
+
 
 @app.route("/<text>", methods=['GET'])
 def user_get(text):
@@ -57,9 +58,11 @@ def user_get(text):
     return text
 
 
-
 @app.route("/upload", methods=['POST','PUT'])
 def upload():
+    """
+    Tranlsate file
+    """
     file = request.files['name']
     if file and allowed_file(file.filename):
         filename=secure_filename(file.filename)
