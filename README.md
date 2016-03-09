@@ -55,4 +55,4 @@ Build a RESTful API server running your own machine translation model
     }
     ```
 
-- Since this the Moses sample-model, it is very limited. Visit the Moses SMT website for more information on creating your own models: http://www.statmt.org/moses/?n=Development.GetStarted
+Since this the Moses sample-model, it is very limited. Visit the Moses SMT website for more information on creating your own models: http://www.statmt.org/moses/?n=Development.GetStarted
