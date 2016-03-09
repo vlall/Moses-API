@@ -1,5 +1,6 @@
 from api.moses_api import app
 
+
 def main():
     app.run(
             host='0.0.0.0',

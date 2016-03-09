@@ -4,7 +4,6 @@ import subprocess
 import yaml
 from werkzeug import secure_filename
 
-
 app = FlaskAPI(__name__)
 ALLOWED_EXTENSIONS = set(['txt', 'pdf'])
 
@@ -16,7 +15,7 @@ def allowed_file(filename):
 
 def translate(text):
     """
-    Run translation model from Docker
+    Run translation model using config
     """
     with open('sample-config.yaml', 'r') as f:
         doc = yaml.load(f)
@@ -29,14 +28,14 @@ def translate(text):
     translateMe = open(fileIn, 'w')
     translateMe.write(str(text)+'\n')
     translateMe.close()
-    subprocess.call([runCommand], cwd=homeDir,shell=True)
+    subprocess.call([runCommand], cwd=homeDir, shell=True)
     readTranslate = open(fileOut, 'r')
     translatedText = readTranslate.read()
     readTranslate.close()
     return {
             'status': status,
             'url': request.host_url.rstrip('/'),
-            'input_text': text,
+            'input text': text,
             'input size': len(text),
             'translation': translatedText.rstrip(),
             'lan': 'N/A',
@@ -58,16 +57,16 @@ def user_get(text):
     return text
 
 
-@app.route("/upload", methods=['POST','PUT'])
+@app.route("/upload", methods=['POST', 'PUT'])
 def upload():
     """
     Tranlsate file
     """
     file = request.files['name']
     if file and allowed_file(file.filename):
-        filename=secure_filename(file.filename)
+        filename = secure_filename(file.filename)
         inputText = file.read()
         inputText = translate(inputText.rstrip())
         return inputText
     else:
-	return ('Error reading file...\n')
+        return ('Error reading file...\n')
