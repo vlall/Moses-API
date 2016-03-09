@@ -4,7 +4,6 @@ services:
     docker
 
 before_install:
-    - sudo apt-get install curl
     - docker pull vlall/moses-api
 
 install:
