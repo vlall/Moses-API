@@ -1,15 +1,11 @@
 sudo: required
-
 services: docker
-
 before_install:
     - sudo apt-get -y install curl
     - docker pull vlall/moses-api
-
 install:
     - docker run -d -p 5000:5000 vlall/moses-api /bin/sh -c "cd /home/moses/mosesdecoder; ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12"
-    - id=$(docker ps -q --filter "ancestor=vlall/moses-api:latest");
-    - docker exec -d $id /bin/sh -c "sudo apt-get -y install screen; cd /home/moses/Downloads/moses-api; screen -dm python run_moses.py"
-
+    - id=$(docker ps -q --filter "ancestor=vlall/moses-api:latest")
+    - docker exec -d $id /bin/sh -c "sudo apt-get -y install screen && cd /home/moses/Downloads/moses-api && screen -dm python run_moses.py"
 after_success:
     - docker exec -i $id /bin/sh -c "curl -XGET localhost:5000/haus" | python -m json.tool
