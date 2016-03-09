@@ -59,12 +59,12 @@ def user_get(text):
 
 
 @app.route("/upload", methods=['POST','PUT'])
-def hello():
-    file = request.files['Test']
+def upload():
+    file = request.files['name']
     if file and allowed_file(file.filename):
         filename=secure_filename(file.filename)
-        print filename
+        inputText = file.read()
+        inputText = translate(inputText.rstrip())
+        return inputText
     else:
-	print ('incorrect extension')
-
-    return "Success"
+	return ('Error reading file...\n')

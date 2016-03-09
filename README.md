@@ -6,8 +6,14 @@ Build an API server running your own machine translation model
 - First pull the Docker image 
 
   ```$ docker pull vlall/moses-api```
-  
-- See sample-config.yml as a reference.
+
+- Next, compile moses in the mosesdecoder directory
+    ```
+    $ /home/moses/mosesdecoder
+    $ ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
+    ```
+
+- See sample-config.yml as a reference for configuring the path to your models.
 
     ```
     infile: '/home/moses/moses-models/sample-models/phrase-model/in'
@@ -19,7 +25,7 @@ Build an API server running your own machine translation model
 
     ```$ python run_moses.py &```
 
-- Finally, make a GET request
+- For a quick translatation of a word, try:
 
     ```
     $ curl -XGET localhost:5000/haus | python -m json.tool
@@ -32,5 +38,12 @@ Build an API server running your own machine translation model
         "translation": "house",
         "url": "http://localhost:5000"
     }
+    ```
+
+- To translate a whole file, run
+
+    ```
+    $ curl -X PUT -F name=@translate_me.txt localhost:5000/upload | python -m json.tool
+    ```
 
 
