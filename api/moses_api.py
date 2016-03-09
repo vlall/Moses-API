@@ -2,8 +2,15 @@ from flask import request, url_for
 from flask.ext.api import FlaskAPI, status, exceptions
 import subprocess
 import yaml
+from werkzeug import secure_filename
 
 app = FlaskAPI(__name__)
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 def translate(text):
     """
@@ -49,11 +56,15 @@ def user_get(text):
     text = translate(text)
     return text
 
+
+
 @app.route("/upload", methods=['POST','PUT'])
 def hello():
     file = request.files['Test']
     if file and allowed_file(file.filename):
         filename=secure_filename(file.filename)
         print filename
+    else:
+	print ('incorrect extension')
 
     return "Success"
