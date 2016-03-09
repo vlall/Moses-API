@@ -13,7 +13,7 @@ Build an API server running your own machine translation model
     $ ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
     ```
 
-- See sample-config.yml as a reference for configuring the path to your models. Your Docker image is already modified to work with the sample model.
+- See sample-config.yaml as a reference for configuring the path to your models. Your Docker image is already modified to work with the sample model.
 
     ```
     in: '/home/moses/moses-models/sample-models/phrase-model/in'
