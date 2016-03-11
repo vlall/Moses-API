@@ -7,9 +7,12 @@ Build a RESTful API server running your own machine translation model
 
   ```$ docker pull vlall/moses-api```
 
-- Next, run the image and compile Moses in the mosesdecoder directory
+- Next, run the image and compile Moses
     ```
-    $ cd /home/moses/mosesdecoder
+    $ docker run -it vlall/moses-api
+    ```
+  You will be directed to the /mosesdecoder directory. The next command takes a moment to compile Moses.
+    ```
     $ ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
     ```
 
