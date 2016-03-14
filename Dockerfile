@@ -78,7 +78,7 @@ RUN tar xf boost_1_60_0.tar.gz
 RUN rm boost_1_60_0.tar.gz
 WORKDIR boost_1_60_0/
 RUN ./bootstrap.sh
-RUN /b2 -j4 --prefix=$PWD --libdir=$PWD/lib64 --layout=system link=static install || echo FAILURE
+RUN ./b2 -j4 --prefix=$PWD --libdir=$PWD/lib64 --layout=system link=static install || echo FAILURE
 
 #  Buckwalter for Arabic
 WORKDIR /home/moses/Downloads
@@ -103,4 +103,5 @@ RUN rm sample-models.tgz
 
 WORKDIR /home/moses/mosesdecoder
 # COMPILE MOSES (Takes awhile...)
-# RUN ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
+RUN ./bjam --with-boost=/home/moses/Downloads/boost_1_60_0 --with-cmph=/home/moses/cmph-2.0 --with-irstlm=/home/moses/irstlm -j12
+WORKDIR /home/moses/
