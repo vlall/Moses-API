@@ -31,10 +31,7 @@ RUN pip install \
 
 RUN mkdir -p /home/moses
 WORKDIR /home/moses
-RUN wget -O /home/moses/RELEASE-3.0.zip https://github.com/moses-smt/mosesdecoder/archive/RELEASE-3.0.zip
-RUN unzip /home/moses/RELEASE-3.0.zip
-RUN rm RELEASE-3.0.zip
-RUN mv mosesdecoder-RELEASE-3.0 mosesdecoder
+RUN git clone https://github.com/moses-smt/mosesdecoder
 RUN mkdir moses-models
 
 #  Giza
