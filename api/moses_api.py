@@ -3,6 +3,9 @@ from flask.ext.api import FlaskAPI, status, exceptions
 import subprocess
 import yaml
 from werkzeug import secure_filename
+import codecs
+import json
+import time
 
 app = FlaskAPI(__name__)
 ALLOWED_EXTENSIONS = set(['txt', 'pdf'])
@@ -14,10 +17,11 @@ def allowed_file(filename):
 
 
 def translate(text):
+    start_time = time.time()
     """
     Run translation model using config
     """
-    with open('sample-config.yaml', 'r') as f:
+    with open('/home/moses/Downloads/moses-api/config.yaml', 'r') as f:
         doc = yaml.load(f)
     fileIn = doc['sample-models']['in']
     fileOut = doc['sample-models']['out']
@@ -25,21 +29,27 @@ def translate(text):
     runCommand = doc['sample-models']['command']
     status = 'Files successfully read'
     subprocess.call(['rm %s && rm %s' % (fileIn, fileOut)], shell=True)
-    translateMe = open(fileIn, 'w')
-    translateMe.write(str(text)+'\n')
-    translateMe.close()
+    text8 = text.encode('utf8')
+    inputFile = open(fileIn, 'w')
+    inputFile.write(text8)
+    inputFile.close()
     subprocess.call([runCommand], cwd=homeDir, shell=True)
     readTranslate = open(fileOut, 'r')
-    translatedText = readTranslate.read()
+    translatedText = readTranslate.read().decode('utf8')
     readTranslate.close()
     return {
-            'status': status,
-            'url': request.host_url.rstrip('/'),
-            'input text': text,
-            'input size': len(text),
-            'translation': translatedText.rstrip(),
-            'lan': 'N/A',
-            'gender': 'N/A'
+            "STATUS": status,
+            "LAN": 'N/A',
+            "MODEL": str(homeDir),
+            "CMD": str(runCommand),
+            "URL": request.host_url.rstrip('/').decode().encode('utf8'),
+            "INPUT": text.encode('utf8'),
+            "INPUT_SIZE": len(text.encode('utf8')),
+            "INPUT_PATH": str(fileIn),            
+            "OUTPUT": translatedText.encode('utf8'),
+            "OUTPUT_SIZE": len(translatedText.encode('utf8')),
+            "OUTPUT_PATH": str(fileOut),
+            "DURATION": '%.3f seconds' % (time.time() - start_time)
     }
 
 
@@ -65,8 +75,8 @@ def upload():
     file = request.files['name']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        inputText = file.read()
-        inputText = translate(inputText.rstrip())
-        return inputText
+        text = file.read().decode('utf8')
+        text = translate(text)
+        return text
     else:
         return ('Error reading file...\n')
