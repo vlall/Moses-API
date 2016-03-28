@@ -61,5 +61,5 @@ target/
 # Ipython Notebook
 .ipynb_checkpoints
 
-# Config
-config.yaml
+# If you want to ignore the config...
+# config.yaml
