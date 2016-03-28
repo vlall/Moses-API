@@ -31,7 +31,7 @@ def translate(text):
     subprocess.call(['rm %s && rm %s' % (fileIn, fileOut)], shell=True)
     text8 = text.encode('utf8')
     inputFile = open(fileIn, 'w')
-    inputFile.write(text8)
+    inputFile.write(text8 + '\n')
     inputFile.close()
     subprocess.call([runCommand], cwd=homeDir, shell=True)
     readTranslate = open(fileOut, 'r')
@@ -46,7 +46,7 @@ def translate(text):
             "INPUT": text.encode('utf8'),
             "INPUT_SIZE": len(text.encode('utf8')),
             "INPUT_PATH": str(fileIn),            
-            "OUTPUT": translatedText.encode('utf8'),
+            "OUTPUT": translatedText.encode('utf8').rstrip(),
             "OUTPUT_SIZE": len(translatedText.encode('utf8')),
             "OUTPUT_PATH": str(fileOut),
             "DURATION": '%.3f seconds' % (time.time() - start_time)
@@ -63,7 +63,7 @@ def user_get(text):
     """
     Translate text
     """
-    text = translate(text)
+    text = translate(text.decode('utf8'))
     return text
 
 
