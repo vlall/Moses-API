@@ -34,14 +34,20 @@ Build a RESTful API server running your own machine translation model
     ```
     $ curl -XGET localhost:5000/haus | python -m json.tool
     {
-        "gender": "N/A",
-        "input size": 4,
-        "input_text": "haus",
-        "lan": "N/A",
-        "status": "Files successfully read",
-        "translation": "house",
-        "url": "http://localhost:5000"
+        "CMD": "/home/moses/mosesdecoder/bin/moses -f phrase-model/moses.ini < phrase-model/in > out",
+        "DURATION": "0.603 seconds",
+        "INPUT": "haus",
+        "INPUT_PATH": "/home/moses/moses-models/sample-models/phrase-model/in",
+        "INPUT_SIZE": 4,
+        "LAN": "N/A",
+        "MODEL": "/home/moses/moses-models/sample-models",
+        "OUTPUT": "house",
+        "OUTPUT_PATH": "/home/moses/moses-models/sample-models/out",
+        "OUTPUT_SIZE": 7,
+        "STATUS": "Files successfully read",
+        "URL": "http://localhost:5000"
     }
+
     ```
 
 - To translate a whole file, navigate to your /moses-api folder, then run:
@@ -49,13 +55,18 @@ Build a RESTful API server running your own machine translation model
     ```
     $ curl -XPUT -F name=@translate_me.txt localhost:5000/upload | python -m json.tool
     {
-        "gender": "N/A",
-        "input size": 22,
-        "input_text": "das ist ein klein haus",
-        "lan": "N/A",
-        "status": "Files successfully read",
-        "translation": "this is a small house",
-        "url": "http://localhost:5000"
+        "CMD": "/home/moses/mosesdecoder/bin/moses -f phrase-model/moses.ini < phrase-model/in > out",
+        "DURATION": "0.624 seconds",
+        "INPUT": "das ist ein klein haus\n",
+        "INPUT_PATH": "/home/moses/moses-models/sample-models/phrase-model/in",
+        "INPUT_SIZE": 23,
+        "LAN": "N/A",
+        "MODEL": "/home/moses/moses-models/sample-models",
+        "OUTPUT": "this is a small house",
+        "OUTPUT_PATH": "/home/moses/moses-models/sample-models/out",
+        "OUTPUT_SIZE": 24,
+        "STATUS": "Files successfully read",
+        "URL": "http://localhost:5000"
     }
     ```
 
