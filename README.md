@@ -9,7 +9,7 @@ Build a RESTful API server running your own machine translation model
 
 - Next, run the image and forward from 5000 to the local port you want the API to be running on
     ```
-    $ docker run -pit 5000:5000 vlall/moses-api
+    $ docker run -it -p 5000:5000 vlall/moses-api
     ```
 
 - You will be directed to the /mosesdecoder directory. Here is where you will compile Moses (takes a few minutes to run).
